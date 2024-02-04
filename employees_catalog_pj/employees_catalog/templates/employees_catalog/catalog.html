@@ -4,6 +4,22 @@
 
 {% block content %}
 
-
+    <ul>
+        {% for top_supervisor in top_supervisors %}
+        <li> {{ top_supervisor.name }} </li>
+          {% if top_supervisor.subordinates.all %}
+          <ul>
+            {% for subordinate in top_supervisor.subordinates.all %}
+            <li>{{ subordinate.name }}
+                {% if subordinate.subordinates.all %}
+                {% include 'employees_catalog/catalog.html' with top_supervisors=subordinate.subordinates.all %}
+                {% endif %}
+            </li>
+            {% endfor %}
+          </ul>
+          {%endif%}
+        {% endfor %}
+    </ul>
 
 {% endblock %}
+

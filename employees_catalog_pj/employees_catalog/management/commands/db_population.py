@@ -2,7 +2,6 @@ from django.core.management.base import BaseCommand
 from django.db import transaction
 from faker import Faker
 from random import randint
-
 from employees_catalog.models import Employees
 
 fake = Faker()
@@ -17,6 +16,7 @@ class Command(BaseCommand):
 
     @transaction.atomic
     def handle(self, *args, **kwargs):
+
         hierarchy_levels = kwargs.get('levels', 5)
         emp_amount = kwargs.get('emp_amount', 20)
 
@@ -34,5 +34,4 @@ class Command(BaseCommand):
                     hierarchy_level=level,
                     supervisor=supervisor
                 )
-                if supervisor:
-                    supervisor.subordinates.add(employee)
+
