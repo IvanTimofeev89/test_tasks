@@ -1,0 +1,1 @@
+python manage.py shell < python manage.py shell < employees_catalog/seed.py
