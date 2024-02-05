@@ -1,3 +1,25 @@
 ul {
     list-style-type: circle;
 }
+
+tr {
+    text-align: center;
+    color: black;
+}
+
+.col-link {
+    color: black;
+    text-decoration: underline;
+}
+
+#search-buttom {
+     color: black;
+     border-color: black;
+}
+
+#search-buttom:hover {
+     color: white;
+     background-color: black;
+     border-color: black;
+}
+
