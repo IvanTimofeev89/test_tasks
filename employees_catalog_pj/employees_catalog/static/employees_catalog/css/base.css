@@ -13,13 +13,18 @@ tr {
 }
 
 #search-buttom {
-     color: black;
-     border-color: black;
+    color: black;
+    border-color: black;
 }
 
 #search-buttom:hover {
-     color: white;
-     background-color: black;
-     border-color: black;
+    color: white;
+    background-color: black;
+    border-color: black;
 }
 
+.welcome-container__link {
+    color: black;
+    text-decoration: underline;
+    list-style-type: none;
+}

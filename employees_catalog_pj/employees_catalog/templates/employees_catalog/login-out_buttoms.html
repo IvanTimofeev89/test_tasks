@@ -1,0 +1,16 @@
+<div>
+     {% if user.is_authenticated %}
+      <form method="post" action="{% url 'logout' %}">
+         {% csrf_token %}
+         <button type="submit">Выход</button>
+      </form>
+     {% else %}
+        <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            <button type="submit">Вход</button>
+        </form>
+        <form method="get" action="{% url 'register' %}">
+           <button type="submit">Регистрация</button>
+        </form>
+     {% endif %}
+</div>

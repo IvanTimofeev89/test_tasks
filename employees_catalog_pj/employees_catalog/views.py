@@ -1,6 +1,13 @@
+from django.contrib.auth import login
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
+from django.http import HttpResponse
+from django.shortcuts import redirect, render
+from django.utils.decorators import method_decorator
 from django.views.generic import ListView
 
+from .forms import RegistrationForm
 from .models import Employees
 
 
@@ -13,7 +20,8 @@ class EmpCatalogListView(ListView):
         return Employees.objects.filter(hierarchy_level=0)
 
 
-class CatalogDetailListView(ListView):
+@method_decorator(login_required(login_url='login'), name='dispatch')
+class CatalogDetailListView(LoginRequiredMixin, ListView):
     template_name = 'employees_catalog/catalog_detail.html'
     model = Employees
     context_object_name = 'employees'
@@ -37,3 +45,19 @@ class CatalogDetailListView(ListView):
             )
 
         return queryset
+
+
+def register(request):
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('catalog_detail')
+    else:
+        form = RegistrationForm()
+    return render(request, 'registration/register.html', {'form': form})
+
+
+def welcome(request):
+    return render(request, 'employees_catalog/welcome.html')

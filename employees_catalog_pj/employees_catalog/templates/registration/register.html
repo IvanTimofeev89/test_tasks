@@ -1,0 +1,15 @@
+{% extends 'employees_catalog/base.html' %}
+
+{% block title %} Регистрация {% endblock %}
+
+{% block content %}
+
+<h2>Регистрация нового прользователя</h2>
+
+<form method="post" action="{% url 'register' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Зарегистрироваться</button>
+</form>
+
+{% endblock %}

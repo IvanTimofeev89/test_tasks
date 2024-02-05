@@ -2,22 +2,19 @@
 
 {% block title %} Перечень всех сотрудников {% endblock %}
 
-{% block content %}
-    <ul>
-        {% for top_supervisor in top_supervisors %}
-        <li> {{ top_supervisor.name }} - {{top_supervisor.position}} </li>
-          {% if top_supervisor.subordinates.all %}
-          <ul>
-            {% for subordinate in top_supervisor.subordinates.all %}
-            <li>{{ subordinate.name }} - {{ subordinate.position }}
-                {% if subordinate.subordinates.all %}
-                {% include 'employees_catalog/catalog.html' with top_supervisors=subordinate.subordinates.all %}
-                {% endif %}
-            </li>
-            {% endfor %}
-          </ul>
-          {%endif%}
-        {% endfor %}
-    </ul>
-{% endblock %}
 
+
+{% block content %}
+{% include 'employees_catalog/login-out_buttoms.html'  %}
+   <ul>
+   {% for top_supervisor in top_supervisors %}
+   <li> {{ top_supervisor.name }} - {{top_supervisor.position}}
+     {% if top_supervisor.subordinates.all %}
+       {% include 'employees_catalog/subordinates_list.html' with subordinates=top_supervisor.subordinates.all %}
+     {% endif %}
+   </li>
+   {% endfor %}
+   </ul>
+</ul>
+
+{% endblock %}

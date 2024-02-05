@@ -1,0 +1,15 @@
+{% extends "employees_catalog/base.html" %}
+
+{% block content %}
+    <h2>Вход</h2>
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Войти</button>
+    </form>
+<form method="get" action="{% url 'register' %}">
+    <button type="submit">Зарегистрироваться</button>
+</form>
+
+{% endblock %}
+

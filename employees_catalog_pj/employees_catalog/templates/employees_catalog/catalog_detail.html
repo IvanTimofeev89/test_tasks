@@ -1,36 +1,34 @@
 {% extends "employees_catalog/base.html" %}
-
 {% block title %} Подробная информация по всем сотрудникам {% endblock %}
 
+
+
 {% block content %}
-
+{% include 'employees_catalog/login-out_buttoms.html' %}
 <div class="container">
-    <form method="get" class="form-inline mb-2">
-        <input type="text" name="search_query" class="form-control mr-sm-2" placeholder="Поиск...">
-        <button id="search-buttom" type="submit" class="btn btn-outline-success my-2 my-sm-0">Поиск</button>
-    </form>
-
-    <table class="table">
-    <thead>
-        <tr>
-        <th scope="col"><a class="col-link" href="?order_by=name{% if request.GET.order_by == 'name' and request.GET.order_direction != 'desc' %}&order_direction=desc{% endif %}">Имя</a></th>
-        <th scope="col"><a class="col-link" href="?order_by=position{% if request.GET.order_by == 'position' and request.GET.order_direction != 'desc' %}&order_direction=desc{% endif %}">Должность</a></th>
-        <th scope="col"><a class="col-link" href="?order_by=hire_date{% if request.GET.order_by == 'hire_date' and request.GET.order_direction != 'desc' %}&order_direction=desc{% endif %}">Дата приема на работу</a></th>
-        <th scope="col"><a class="col-link" href="?order_by=salary{% if request.GET.order_by == 'salary' and request.GET.order_direction != 'desc' %}&order_direction=desc{% endif %}">Заработная плата</a></th>
-        </tr>
-    </thead>
-    <tbody>
-    {% for emploee in employees %}
-        <tr>
+   <form method="get" class="form-inline mb-2">
+      <input type="text" name="search_query" class="form-control mr-sm-2" placeholder="Поиск...">
+      <button id="search-buttom" type="submit" class="btn btn-outline-success my-2 my-sm-0">Поиск</button>
+   </form>
+   <table class="table">
+      <thead>
+         <tr>
+            <th scope="col"><a class="col-link" href="?order_by=name{% if request.GET.order_by == 'name' and request.GET.order_direction != 'desc' %}&order_direction=desc{% endif %}">Имя</a></th>
+            <th scope="col"><a class="col-link" href="?order_by=position{% if request.GET.order_by == 'position' and request.GET.order_direction != 'desc' %}&order_direction=desc{% endif %}">Должность</a></th>
+            <th scope="col"><a class="col-link" href="?order_by=hire_date{% if request.GET.order_by == 'hire_date' and request.GET.order_direction != 'desc' %}&order_direction=desc{% endif %}">Дата приема на работу</a></th>
+            <th scope="col"><a class="col-link" href="?order_by=salary{% if request.GET.order_by == 'salary' and request.GET.order_direction != 'desc' %}&order_direction=desc{% endif %}">Заработная плата</a></th>
+         </tr>
+      </thead>
+      <tbody>
+         {% for emploee in employees %}
+         <tr>
             <td> {{emploee.name}} </td>
             <td> {{emploee.position}} </td>
             <td> {{emploee.hire_date}} </td>
             <td> {{emploee.salary}} </td>
-        </tr>
-    {% endfor %}
-    </tbody>
-</table>
+         </tr>
+         {% endfor %}
+      </tbody>
+   </table>
 </div>
-
 {% endblock %}
-
