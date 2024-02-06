@@ -1,5 +1,6 @@
 from django.core.validators import MinValueValidator
 from django.db import models
+from django.urls import reverse
 
 
 # Create your models here.
@@ -11,3 +12,8 @@ class Employees(models.Model):
     hierarchy_level = models.IntegerField(validators=[MinValueValidator(0), ])
     supervisor = models.ForeignKey('self', on_delete=models.CASCADE, null=True,
                                    blank=True, related_name='subordinates')
+    picture = models.ImageField(null=True, blank=True, default=None)
+
+
+    def __str__(self):
+        return f'{self.name}'

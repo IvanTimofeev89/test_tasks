@@ -5,7 +5,7 @@ from django.db.models import Q
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.utils.decorators import method_decorator
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 
 from .forms import RegistrationForm
 from .models import Employees
@@ -45,6 +45,14 @@ class CatalogDetailListView(LoginRequiredMixin, ListView):
             )
 
         return queryset
+
+
+@method_decorator(login_required(login_url='login'), name='dispatch')
+class EmployeeDetail(DetailView):
+    template_name = 'employees_catalog/emp_detail.html'
+    model = Employees
+    context_object_name = 'employee'
+
 
 
 def register(request):

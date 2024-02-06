@@ -28,3 +28,15 @@ tr {
     text-decoration: underline;
     list-style-type: none;
 }
+
+.employee-picture {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.minimized {
+    width: 100px;
+    height: 100px;
+}

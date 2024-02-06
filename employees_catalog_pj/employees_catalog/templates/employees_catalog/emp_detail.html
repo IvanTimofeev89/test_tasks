@@ -1,0 +1,34 @@
+{% extends "employees_catalog/base.html" %}
+{% block title %} Подробная информация o {{ employee.name }}  {% endblock %}
+
+
+
+{% block content %}
+{% include 'employees_catalog/login-out_buttoms.html' %}
+<img class="employee-picture" src="{{ employee.picture }}" alt="Фото сотрудника">
+<div class="container">
+   <table class="table">
+      <thead>
+         <tr>
+            <th scope="col">Имя</th>
+            <th scope="col">Должность</th>
+            <th scope="col">Дата приема на работу</th>
+            <th scope="col">Заработная плата</th>
+            <th scope="col">Уровень в иерархии</th>
+            <th scope="col">Начальник</th>
+         </tr>
+      </thead>
+      <tbody>
+         <tr>
+            <td> {{employee.name}} </td>
+            <td> {{employee.position}} </td>
+            <td> {{employee.hire_date}} </td>
+            <td> {{employee.salary}} </td>
+            <td> {{employee.hierarchy_level}} </td>
+            <td> {% if employee.supervisor is None %} <span>Нет</span> {% else %}
+               <a href= "{% url 'emp_detail' employee.supervisor.id %}" >{{employee.supervisor}}</a>{% endif %}</td>
+         </tr>
+      </tbody>
+   </table>
+</div>
+{% endblock %}
