@@ -2,12 +2,13 @@ from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
-from django.http import HttpResponse
+from django.contrib.auth.decorators import user_passes_test
 from django.shortcuts import redirect, render
+from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, UpdateView
 
-from .forms import RegistrationForm
+from .forms import RegistrationForm, UpdateForm
 from .models import Employees
 
 
@@ -47,12 +48,25 @@ class CatalogDetailListView(LoginRequiredMixin, ListView):
         return queryset
 
 
-@method_decorator(login_required(login_url='login'), name='dispatch')
+def is_admin(user):
+    return user.is_staff
+
+
+@method_decorator(user_passes_test(is_admin, login_url='login_admin', redirect_field_name='next'), name='dispatch')
+class UpdateEmp(UpdateView):
+    model = Employees
+    template_name = 'employees_catalog/emp_update.html'
+    form_class = UpdateForm
+
+    def get_success_url(self):
+        return self.request.META.get('HTTP_REFERER', reverse_lazy('welcome')).replace('emp_update', 'emp_detail')
+
+
+@method_decorator(login_required(login_url='login', redirect_field_name='next'), name='dispatch')
 class EmployeeDetail(DetailView):
     template_name = 'employees_catalog/emp_detail.html'
     model = Employees
     context_object_name = 'employee'
-
 
 
 def register(request):

@@ -1,10 +1,10 @@
 <ul>
-    {% for subordinate in subordinates %}
-        <li>
-            {{ subordinate.name }} - {{ subordinate.position }}
-            {% if subordinate.subordinates.all %}
-                {% include 'employees_catalog/subordinates_list.html' with subordinates=subordinate.subordinates.all %}
-            {% endif %}
-        </li>
-    {% endfor %}
+   {% for subordinate in subordinates %}
+   <li>
+      {{ subordinate.name }} - {{ subordinate.position }}
+      {% if subordinate.subordinates.all %}
+      {% include 'employees_catalog/subordinates_list.html' with subordinates=subordinate.subordinates.all %}
+      {% endif %}
+   </li>
+   {% endfor %}
 </ul>

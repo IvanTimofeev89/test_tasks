@@ -1,11 +1,14 @@
 {% extends "employees_catalog/base.html" %}
 {% block title %} Подробная информация o {{ employee.name }}  {% endblock %}
-
-
-
 {% block content %}
 {% include 'employees_catalog/login-out_buttoms.html' %}
-<img class="employee-picture" src="{{ employee.picture }}" alt="Фото сотрудника">
+{% include 'employees_catalog/to_welcome.html'  %}
+<div>
+   <form action="{% url 'catalog_detail' %}">
+      <button type="submit">К детальному каталогу</button>
+   </form>
+</div>
+<img class="employee-picture" src="{{ employee.picture.url }}" alt="Фото сотрудника">
 <div class="container">
    <table class="table">
       <thead>
@@ -20,15 +23,21 @@
       </thead>
       <tbody>
          <tr>
-            <td> {{employee.name}} </td>
-            <td> {{employee.position}} </td>
-            <td> {{employee.hire_date}} </td>
-            <td> {{employee.salary}} </td>
-            <td> {{employee.hierarchy_level}} </td>
+            <td> {{employee.name}}</td>
+            <td> {{employee.position}}</td>
+            <td> {{employee.hire_date}}</td>
+            <td> {{employee.salary}}</td>
+            <td> {{employee.hierarchy_level}}</td>
             <td> {% if employee.supervisor is None %} <span>Нет</span> {% else %}
-               <a href= "{% url 'emp_detail' employee.supervisor.id %}" >{{employee.supervisor}}</a>{% endif %}</td>
+               <a href="{% url 'emp_detail' employee.supervisor.id %}">{{employee.supervisor}}</a>{% endif %}
+            </td>
          </tr>
       </tbody>
    </table>
+</div>
+<div>
+   <form action="{% url 'emp_update' employee.id %}">
+      <button type="submit">Изменить данные сотрудника</button>
+   </form>
 </div>
 {% endblock %}

@@ -1,0 +1,11 @@
+{% extends "employees_catalog/base.html" %}
+{% block title %} Подробная информация o {{ employee.name }}  {% endblock %}
+{% block content %}
+{% include 'employees_catalog/login-out_buttoms.html' %}
+{% include 'employees_catalog/to_welcome.html'  %}
+<form method="post" enctype="multipart/form-data">
+   {% csrf_token %}
+   {{ form.as_p }}
+   <button type="submit"> Обновить данные</button>
+</form>
+{% endblock %}

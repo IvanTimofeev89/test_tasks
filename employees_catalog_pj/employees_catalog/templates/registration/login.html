@@ -1,8 +1,8 @@
 {% extends "employees_catalog/base.html" %}
 
 {% block content %}
-    <h2>Вход</h2>
-    <form method="post" action="{% url 'login' %}">
+    <h2>Доступ только для авторизованных пользователей</h2>
+    <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Войти</button>
@@ -10,6 +10,6 @@
 <form method="get" action="{% url 'register' %}">
     <button type="submit">Зарегистрироваться</button>
 </form>
-
+{% include 'employees_catalog/to_welcome.html'  %}
 {% endblock %}
 

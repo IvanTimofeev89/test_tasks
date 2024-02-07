@@ -1,20 +1,16 @@
 {% extends "employees_catalog/base.html" %}
-
 {% block title %} Перечень всех сотрудников {% endblock %}
-
-
-
 {% block content %}
 {% include 'employees_catalog/login-out_buttoms.html'  %}
-   <ul>
+{% include 'employees_catalog/to_welcome.html'  %}
+<ul>
    {% for top_supervisor in top_supervisors %}
    <li> {{ top_supervisor.name }} - {{top_supervisor.position}}
-     {% if top_supervisor.subordinates.all %}
-       {% include 'employees_catalog/subordinates_list.html' with subordinates=top_supervisor.subordinates.all %}
-     {% endif %}
+      {% if top_supervisor.subordinates.all %}
+      {% include 'employees_catalog/subordinates_list.html' with subordinates=top_supervisor.subordinates.all %}
+      {% endif %}
    </li>
    {% endfor %}
-   </ul>
 </ul>
-
+</ul>
 {% endblock %}

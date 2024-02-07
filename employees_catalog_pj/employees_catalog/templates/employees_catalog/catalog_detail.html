@@ -1,10 +1,8 @@
 {% extends "employees_catalog/base.html" %}
 {% block title %} Подробная информация по всем сотрудникам {% endblock %}
-
-
-
 {% block content %}
 {% include 'employees_catalog/login-out_buttoms.html' %}
+{% include 'employees_catalog/to_welcome.html'  %}
 <div class="container">
    <form method="get" class="form-inline mb-2">
       <input type="text" name="search_query" class="form-control mr-sm-2" placeholder="Поиск...">
@@ -27,7 +25,7 @@
             <td> {{employee.position}} </td>
             <td> {{employee.hire_date}} </td>
             <td> {{employee.salary}} </td>
-            <td> <img class="employee-picture minimized" src="{{ employee.picture }}" alt="Фото сотрудника"> </td>
+            <td> <img class="employee-picture minimized" src="{{ employee.picture.url }}"  alt="Фото сотрудника"> </td>
          </tr>
          {% endfor %}
       </tbody>

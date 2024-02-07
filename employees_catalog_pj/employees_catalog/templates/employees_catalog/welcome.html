@@ -1,14 +1,11 @@
 {% extends "employees_catalog/base.html" %}
-
 {% block title %} Успешный вход в систему {% endblock %}
-
 {% block content %}
-<h2>Вы успешно вошли в систему</h2>
-
+<h2>Выберите раздел сайта</h2>
 <div class="welcome-container">
-    <ul>
-        <li><a class="welcome-container__link" href=" {% url 'emp_catalog' %} ">Дерево персонала</a></li>
-        <li><a class="welcome-container__link" href=" {% url 'catalog_detail' %} ">Детальная информация о сотрудниках</a></li>
-    </ul>
+   <ul>
+      <li><a class="welcome-container__link" href=" {% url 'emp_catalog' %} ">Дерево персонала</a></li>
+      <li><a class="welcome-container__link" href=" {% url 'catalog_detail' %} ">Детальная информация о сотрудниках</a></li>
+   </ul>
 </div>
 {% endblock %}
