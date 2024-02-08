@@ -18,10 +18,3 @@ class UpdateForm(forms.ModelForm):
     class Meta:
         model = Employees
         fields = ['id', 'name', 'position', 'hire_date', 'hierarchy_level', 'supervisor', 'picture']
-
-    def clean(self):
-        cleaned_data = super().clean()
-        supervisor = cleaned_data.get('supervisor')
-        if supervisor:
-            cleaned_data['hierarchy_level'] = supervisor.hierarchy_level + 1
-        return cleaned_data

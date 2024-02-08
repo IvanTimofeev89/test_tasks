@@ -16,4 +16,20 @@ class Employees(models.Model):
                                 default="employees_pictures/default.JPG", verbose_name='Фото сотрудника')
 
     def __str__(self):
-        return f'{self.name} - id:{self.id}'
+        return f'{self.name}'
+
+    def save(self, *args, **kwargs):
+        if self.hierarchy_level != self.supervisor.hierarchy_level + 1:
+            self.hierarchy_level = self.supervisor.hierarchy_level + 1
+            if self.subordinates.all():
+                _recursive_hierarchy_update(subordinates=self.subordinates.all(),
+                                            boss_hierarchy_level=self.hierarchy_level)
+        super().save(*args, **kwargs)
+
+
+def _recursive_hierarchy_update(subordinates, boss_hierarchy_level: int):
+    for subordinate in subordinates:
+        subordinate.hierarchy_level = boss_hierarchy_level + 1
+        subordinate.save()
+        if subordinate.subordinates.all():
+            _recursive_hierarchy_update(subordinate.subordinates.all(), subordinate.hierarchy_level)
