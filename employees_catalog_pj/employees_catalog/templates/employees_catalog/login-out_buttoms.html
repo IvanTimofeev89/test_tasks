@@ -1,16 +1,16 @@
-<div>
+<div class="buttom-container">
    {% if user.is_authenticated %}
-   <form method="post" action="{% url 'logout' %}">
+   <form class="form-group" method="post" action="{% url 'logout' %}">
       {% csrf_token %}
-      <button type="submit">Выход</button>
+      <button class="btn btn-outline-primary" type="submit">Выход</button>
    </form>
    {% else %}
-   <form method="post" action="{% url 'login' %}">
+   <form class="form-group" method="post" action="{% url 'login' %}">
       {% csrf_token %}
-      <button type="submit">Вход</button>
+      <button class="btn btn-outline-primary" type="submit">Вход</button>
    </form>
-   <form method="get" action="{% url 'register' %}">
-      <button type="submit">Регистрация</button>
+   <form class="form-group" method="get" action="{% url 'register' %}">
+      <button class="btn btn-outline-primary" type="submit">Регистрация</button>
    </form>
    {% endif %}
 </div>

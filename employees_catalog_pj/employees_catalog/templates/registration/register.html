@@ -6,10 +6,10 @@
 
 <h2>Регистрация нового прользователя</h2>
 
-<form method="post" action="{% url 'register' %}">
+<form class="form-group" method="post" action="{% url 'register' %}">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Зарегистрироваться</button>
+    <button class="btn btn-outline-primary"  type="submit">Зарегистрироваться</button>
 </form>
 {% include 'employees_catalog/to_welcome.html'  %}
 {% endblock %}

@@ -2,10 +2,15 @@
 {% block title %} Успешный вход в систему {% endblock %}
 {% block content %}
 <h2>Выберите раздел сайта</h2>
-<div class="welcome-container">
-   <ul>
-      <li><a class="welcome-container__link" href=" {% url 'emp_catalog' %} ">Дерево персонала</a></li>
-      <li><a class="welcome-container__link" href=" {% url 'catalog_detail' %} ">Детальная информация о сотрудниках</a></li>
-   </ul>
+
+<div class="buttom-container">
+
+    <form class="form-group" action="{% url 'emp_catalog' %}">
+        <button class="btn btn-outline-primary" type="submit">Дерево персонала</button>
+    </form>
+    <form class="form-group" action="{% url 'catalog_detail' %}">
+        <button class="btn btn-outline-primary" type="submit">Детальная информация о сотрудниках</button>
+    </form>
+
 </div>
 {% endblock %}

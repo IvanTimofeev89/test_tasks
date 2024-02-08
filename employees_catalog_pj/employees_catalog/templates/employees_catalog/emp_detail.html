@@ -3,9 +3,9 @@
 {% block content %}
 {% include 'employees_catalog/login-out_buttoms.html' %}
 {% include 'employees_catalog/to_welcome.html'  %}
-<div>
-   <form action="{% url 'catalog_detail' %}">
-      <button type="submit">К детальному каталогу</button>
+<div class="buttom-container">
+   <form class="form-group" action="{% url 'catalog_detail' %}">
+      <button class="btn btn-outline-primary" type="submit">К детальному каталогу</button>
    </form>
 </div>
 <img class="employee-picture" src="{{ employee.picture.url }}" alt="Фото сотрудника">
@@ -36,8 +36,8 @@
    </table>
 </div>
 <div>
-   <form action="{% url 'emp_update' employee.id %}">
-      <button type="submit">Изменить данные сотрудника</button>
+   <form class="form-group" action="{% url 'emp_update' employee.id %}">
+      <button class="btn btn-outline-primary" type="submit">Изменить данные сотрудника</button>
    </form>
 </div>
 {% endblock %}

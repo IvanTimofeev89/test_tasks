@@ -3,9 +3,9 @@
 {% block content %}
 {% include 'employees_catalog/login-out_buttoms.html' %}
 {% include 'employees_catalog/to_welcome.html'  %}
-<form method="post" enctype="multipart/form-data">
+<form class="form-group" method="post" enctype="multipart/form-data">
    {% csrf_token %}
    {{ form.as_p }}
-   <button type="submit"> Обновить данные</button>
+   <button class="btn btn-outline-primary" type="submit"> Обновить данные</button>
 </form>
 {% endblock %}

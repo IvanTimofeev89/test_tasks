@@ -11,6 +11,7 @@ from django.views.generic import ListView, DetailView, UpdateView
 from .forms import RegistrationForm, UpdateForm
 from .models import Employees
 
+QUERY_LIMIT = 100
 
 class EmpCatalogListView(ListView):
     template_name = 'employees_catalog/catalog.html'
@@ -18,6 +19,8 @@ class EmpCatalogListView(ListView):
     context_object_name = 'top_supervisors'
 
     def get_queryset(self):
+        if QUERY_LIMIT:
+            return Employees.objects.filter(hierarchy_level=0)[:QUERY_LIMIT]
         return Employees.objects.filter(hierarchy_level=0)
 
 
@@ -44,7 +47,8 @@ class CatalogDetailListView(LoginRequiredMixin, ListView):
                 Q(hire_date__icontains=search_query) |
                 Q(salary__icontains=search_query)
             )
-
+        if QUERY_LIMIT:
+            return queryset[:QUERY_LIMIT]
         return queryset
 
 

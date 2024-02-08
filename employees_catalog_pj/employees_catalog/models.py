@@ -19,7 +19,7 @@ class Employees(models.Model):
         return f'{self.name}'
 
     def save(self, *args, **kwargs):
-        if self.hierarchy_level != self.supervisor.hierarchy_level + 1:
+        if self.supervisor and (self.hierarchy_level != self.supervisor.hierarchy_level + 1):
             self.hierarchy_level = self.supervisor.hierarchy_level + 1
             if self.subordinates.all():
                 _recursive_hierarchy_update(subordinates=self.subordinates.all(),
@@ -27,7 +27,7 @@ class Employees(models.Model):
         super().save(*args, **kwargs)
 
 
-def _recursive_hierarchy_update(subordinates, boss_hierarchy_level: int):
+def _recursive_hierarchy_update(subordinates: Employees, boss_hierarchy_level: int) -> None:
     for subordinate in subordinates:
         subordinate.hierarchy_level = boss_hierarchy_level + 1
         subordinate.save()

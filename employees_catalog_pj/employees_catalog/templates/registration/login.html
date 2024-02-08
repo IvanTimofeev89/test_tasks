@@ -2,14 +2,14 @@
 
 {% block content %}
     <h2>Доступ только для авторизованных пользователей</h2>
-    <form method="post">
+    <form class="form-group" method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Войти</button>
+        <button class="btn btn-outline-primary" type="submit">Войти</button>
     </form>
-<form method="get" action="{% url 'register' %}">
-    <button type="submit">Зарегистрироваться</button>
-</form>
+    <form  class="form-group" method="get" action="{% url 'register' %}">
+        <button class="btn btn-outline-primary" type="submit">Зарегистрироваться</button>
+    </form>
 {% include 'employees_catalog/to_welcome.html'  %}
 {% endblock %}
 

@@ -5,7 +5,7 @@
 {% include 'employees_catalog/to_welcome.html'  %}
 <ul>
    {% for top_supervisor in top_supervisors %}
-   <li> {{ top_supervisor.name }} - {{top_supervisor.position}}
+   <li > {{ top_supervisor.name }} - {{top_supervisor.position}}
       {% if top_supervisor.subordinates.all %}
       {% include 'employees_catalog/subordinates_list.html' with subordinates=top_supervisor.subordinates.all %}
       {% endif %}
