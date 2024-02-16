@@ -1,6 +1,6 @@
 [Ссылка на исходное тестовое задание ](https://yandex.ru/q/pythontalk/12735212546/)
 
-Установить зависимости pip install -r requirements-dev.txt  
+Установить зависимости pip install -r requirements.txt  
 
 Для заполнения БД тестовыми используется команда **python manage.py db_population --levels= --emp_amount=**.  
 Где:  
